@@ -14,6 +14,7 @@ function ProfileSidebar(props) {
 export default function Home() {
   const githubUser = 'jwfelipee'
   const pessoasFavoritas = [
+    'wfelipe2011',
     'juunegreiros',
     'peas',
     'omariosouto',
