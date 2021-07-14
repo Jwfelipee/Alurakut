@@ -6,7 +6,7 @@ import { AlurakutMenu, AlurakutProfileSidebarMenuDefault, OrkutNostalgicIconSet 
 
 function ProfileSidebar(propriedades) {
   return (
-    <Box as="aside">
+    <Box >
       <img src={`https://github.com/${propriedades.githubUser}.png`} style={{ borderRadius: '8px' }} />
       <hr />
 
@@ -22,6 +22,28 @@ function ProfileSidebar(propriedades) {
   )
 }
 
+function ProfileRelationsBox(propriedades) {
+  return (
+    <ProfileRelationsBoxWrapper>
+      <h2 className="smallTitle">
+      {propriedades.title} ({propriedades.items.length})
+      </h2>
+      <ul>
+       {/*{seguidores.map((itemAtual) => {
+          return (
+            <li key={itemAtual}>
+              <a href={`https://github.com/${itemAtual.[0].avartar_url}`}>
+                <img src={itemAtual} />
+                <span>{itemAtual}</span>
+              </a>
+            </li>
+          )
+        })}*/} 
+      </ul>
+    </ProfileRelationsBoxWrapper>
+  )
+}
+
 export default function Home() {
   const githubUser = 'jwfelipee';
   const [comunidades, setComunidades] = React.useState([{
@@ -31,8 +53,6 @@ export default function Home() {
   }]);
   //const comunidades = comunidades[0];
   //const alteradorDeComunidades/setComunidades = comunidades[1];
-
-  console.log('nosso teste');
   // const comunidades = ['Alurakut'];
   const pessoasFavoritas = [
     'wfelipe2011',
@@ -42,6 +62,23 @@ export default function Home() {
     'rafaballerini',
     'felipefialho'
   ]
+
+  const [seguidores, setSeguidores] = React.useState([]);
+  // 0 - pegar o array de dados do github
+  React.useEffect(function() {
+    fetch('https://api.github.com/users/peas/followers')
+    .then((respostaDoServidor) => {
+      return respostaDoServidor.json();
+    })
+    .then((respostaConvertida) => {
+      setSeguidores(respostaConvertida);
+    })
+  }, [])
+
+
+  // 1 - Criar um BOx que vai ter um map, 
+  // basenado nos items do array que pegamos do Github
+
 
   return (
     <>
@@ -91,7 +128,7 @@ export default function Home() {
                 />
               </div>
 
-              <button>
+              <button id="btn">
                 Criar comunidade
               </button>
             </form>
@@ -99,11 +136,11 @@ export default function Home() {
         </div>
 
         <div className="profileRealtionsArea" style={{ gridArea: 'profileRealtionsArea' }}>
+          <ProfileRelationsBox title="seguidores" items={seguidores} />
           <ProfileRelationsBoxWrapper>
             <h2 className="smallTitle">
-              comunidades ({comunidades.length})
+              Comunidades ({comunidades.length})
             </h2>
-
             <ul>
               {comunidades.map((itemAtual) => {
                 return (
