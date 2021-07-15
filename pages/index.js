@@ -107,7 +107,7 @@ export default function Home() {
   return (
     <>
       <AlurakutMenu />
-      <MainGrid>
+      <MainGrid >
         <div className="profileArea" style={{ gridArea: 'profileArea' }}>
           <ProfileSidebar githubUser={githubUser} />
         </div>
@@ -145,8 +145,8 @@ export default function Home() {
               })
                 .then(async (response) => {
                   const dados = await response.json()
-                  console.log(dados.registroCriado);
-                  const comunidade = dados.registroCriado;
+                  console.log(dados);
+
                   const comunidadesAtualizadas = [...comunidades, comunidade];
                   setComunidades(comunidadesAtualizadas)
                 })
