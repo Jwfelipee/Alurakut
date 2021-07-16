@@ -46,6 +46,17 @@ function ProfileRelationsBox(propriedades) {
   )
 }
 
+function navClick(event) {
+  const nav = document.getElementById('navbarSair')
+  nav.addEventListener('click', (event => {
+    console.log(event.target.text)
+    if(event.target.text === 'Sair'){
+      alert('saindo!')
+      nookies.destroy(null, 'USER_TOKEN', {})
+    }
+  }))
+}
+
 export default function Home(props) {
   const githubUser = props.githubUser;
   const [comunidades, setComunidades] = React.useState([]);
@@ -101,6 +112,9 @@ export default function Home(props) {
 
   }, [])
 
+  // pegar o click do mouse
+
+
 
   // 1 - Criar um BOx que vai ter um map, 
   // basenado nos items do array que pegamos do Github
@@ -108,6 +122,7 @@ export default function Home(props) {
 
   return (
     <>
+    {navClick()}
       <AlurakutMenu />
       <MainGrid >
         <div className="profileArea" style={{ gridArea: 'profileArea' }}>
@@ -122,7 +137,6 @@ export default function Home(props) {
 
             <OrkutNostalgicIconSet />
           </Box>
-
           <Box>
             <h2 className="subTitle"> O que voce deseja fazer? </h2>
             <form onSubmit={function handleSubmit(e) {
@@ -228,19 +242,20 @@ export async function getServerSideProps(context) {
       Authorization: token
     }
   })
-  .then((resposta) => resposta.json())
+    .then((resposta) => resposta.json())
 
   console.log('isAuthenticated', isAuthenticated);
 
   const { githubUser } = jwt.decode(token);
-  if(isAuthenticated != true){
-    return {
-      redirect: {
-        destination: '/login',
-        permanent: false,
+
+  /*  if(!isAuthenticated){
+      return {
+        redirect: {
+          destination: '/login',
+          permanent: false,
+        }
       }
-    }
-  }
+    }     */
 
   return {
     props: {

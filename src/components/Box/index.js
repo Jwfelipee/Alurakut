@@ -9,8 +9,8 @@ const Box = styled.div`
   margin-bottom: 10px;
   .boxLink {
     font-size: 14px;
-    color: #C6FEB6;
-    text-decoration: none;
+    color: #0C6B00;
+    text-decoration: underline black;
     font-weight: 800;
   }
   .title {

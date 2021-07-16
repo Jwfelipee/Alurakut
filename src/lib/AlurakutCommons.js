@@ -34,8 +34,8 @@ export function AlurakutMenu({ githubUser }) {
           ))}
         </nav>
 
-        <nav>
-          <a href={`/logout`}>
+        <nav id="navbarSair">
+          <a /*href={`/logout`}*/>
             Sair
           </a>
           <div>
@@ -80,7 +80,7 @@ AlurakutMenu.Wrapper = styled.header`
     }
     .boxLink {
       font-size: 18px;
-      color: #0C6B00;
+      color: #000;
       -webkit-text-decoration: none;
       text-decoration: none;
       font-weight: 800;
