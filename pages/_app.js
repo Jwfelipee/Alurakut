@@ -11,7 +11,7 @@ const GlobalStyle = createGlobalStyle`
  
   body {
     font-family: sans-serif;
-    background-color: #FFF;
+    background-color: #000;
   }
 
   #__next {

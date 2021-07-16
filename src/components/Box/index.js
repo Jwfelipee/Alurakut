@@ -33,7 +33,7 @@ const Box = styled.div`
   hr {
     margin-top: 12px;
     margin-bottom: 8px;
-    border-color: blueviolet;
+    border-color: white;
     border-bottom-color: #ECF2FA;
   }
   input {
