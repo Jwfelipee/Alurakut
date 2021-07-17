@@ -46,17 +46,6 @@ function ProfileRelationsBox(propriedades) {
   )
 }
 
-function navClick(event) {
-  const nav = document.getElementById('navbarSair')
-  nav.addEventListener('click', (event => {
-    console.log(event.target.text)
-    if(event.target.text === 'Sair'){
-      alert('saindo!')
-      nookies.destroy(null, 'USER_TOKEN', {})
-    }
-  }))
-}
-
 export default function Home(props) {
   const githubUser = props.githubUser;
   const [comunidades, setComunidades] = React.useState([]);
@@ -122,7 +111,6 @@ export default function Home(props) {
 
   return (
     <>
-    {navClick()}
       <AlurakutMenu />
       <MainGrid >
         <div className="profileArea" style={{ gridArea: 'profileArea' }}>
@@ -248,14 +236,14 @@ export async function getServerSideProps(context) {
 
   const { githubUser } = jwt.decode(token);
 
-  /*  if(!isAuthenticated){
+  if(!isAuthenticated){
       return {
         redirect: {
           destination: '/login',
           permanent: false,
         }
       }
-    }     */
+    }     
 
   return {
     props: {

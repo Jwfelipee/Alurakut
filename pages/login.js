@@ -48,14 +48,14 @@ export default function LoginPage() {
                             placeholder="Usuário"
                             value={githubUser}
                             onChange={(e) => {
-                                setGithubUser(e.target.value);
+                            setGithubUser(e.target.value);
                             }} // min 41,29 
                         />
                         {githubUser.length === 0
                             ? 'Preencha o campo'
                             : ''
                         }
-                        <button type="submit">
+                        <button disabled={githubUser.length === 0} type="submit">
                             Login
                         </button>
                     </form>

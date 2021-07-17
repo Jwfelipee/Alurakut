@@ -1,6 +1,8 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
+import nookies from 'nookies';
 import NextLink from 'next/link';
+import { useRouter } from 'next/router';
 
 const BASE_URL = 'http://alurakut.vercel.app/';
 const v = '1';
@@ -20,6 +22,7 @@ function Link({ href, children, ...props }) {
 // Menu
 // ================================================================================================================
 export function AlurakutMenu({ githubUser }) {
+  const router = useRouter();
   const [isMenuOpen, setMenuState] = React.useState(false);
   return (
     <AlurakutMenu.Wrapper isMenuOpen={isMenuOpen}>
@@ -27,7 +30,7 @@ export function AlurakutMenu({ githubUser }) {
         <AlurakutMenu.Logo src={`${BASE_URL}/logo.svg`} />
 
         <nav style={{ flex: 1 }}>
-          {[{ name: 'Inicio', slug: '/'}, {name: 'Amigos', slug: '/amigos'}, {name: 'Comunidades', slug: '/comunidades'}].map((menuItem) => (
+          {[{ name: 'Inicio', slug: '/' }, { name: 'Amigos', slug: '/amigos' }, { name: 'Comunidades', slug: '/comunidades' }].map((menuItem) => (
             <Link key={`key__${menuItem.name.toLocaleLowerCase()}`} href={`${menuItem.slug.toLocaleLowerCase()}`}>
               {menuItem.name}
             </Link>
@@ -35,7 +38,17 @@ export function AlurakutMenu({ githubUser }) {
         </nav>
 
         <nav id="navbarSair">
-          <a /*href={`/logout`}*/>
+          <a onClick={((event) => {
+            const nav = document.getElementById('navbarSair')
+            nav.addEventListener('click', (event => {
+              console.log(event.target.text)
+              if (event.target.text === 'Sair') {
+                alert('saindo!')
+                nookies.destroy(null, 'USER_TOKEN', {})
+                router.push('/login')
+              }
+            }))
+          })} >
             Sair
           </a>
           <div>
@@ -193,31 +206,31 @@ export function AlurakutProfileSidebarMenuDefault() {
       <nav>
         <a href="/">
           <img src={`${BASE_URL}/icons/user.svg`} />
-            Perfil
-          </a>
+          Perfil
+        </a>
         <a href="/">
           <img src={`${BASE_URL}/icons/book.svg`} />
-            Recados
-          </a>
+          Recados
+        </a>
         <a href="/">
           <img src={`${BASE_URL}/icons/camera.svg`} />
-            Fotos
-          </a>
+          Fotos
+        </a>
         <a href="/">
           <img src={`${BASE_URL}/icons/sun.svg`} />
-            Depoimentos
-          </a>
+          Depoimentos
+        </a>
       </nav>
       <hr />
       <nav>
         <a href="/">
           <img src={`${BASE_URL}/icons/plus.svg`} />
-            GitHub Trends
-          </a>
+          GitHub Trends
+        </a>
         <a href="/logout">
           <img src={`${BASE_URL}//icons/logout.svg`} />
-            Sair
-          </a>
+          Sair
+        </a>
       </nav>
     </AlurakutProfileSidebarMenuDefault.Wrapper>
   )
