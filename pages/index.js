@@ -31,16 +31,16 @@ function ProfileRelationsBox(propriedades) {
         {propriedades.title} ({propriedades.items.length})
       </h2>
       <ul>
-        {/*{seguidores.map((itemAtual) => {
+        {propriedades.items.map((itemAtual) => {
           return (
-            <li key={itemAtual}>
-              <a href={`https://github.com/${itemAtual.[0].avartar_url}`}>
-                <img src={itemAtual} />
-                <span>{itemAtual}</span>
+            <li key={itemAtual.id}>
+              <a href={itemAtual}>
+                <img src={itemAtual.avatar_url} />
+                <span>{itemAtual.login}</span>
               </a>
             </li>
           )
-        })}*/}
+        })}
       </ul>
     </ProfileRelationsBoxWrapper>
   )
@@ -63,16 +63,15 @@ export default function Home(props) {
 
   const [seguidores, setSeguidores] = React.useState([]);
   // 0 - pegar o array de dados do github
-  React.useEffect(function () {
+  React.useEffect(() => {
     //-------------GET---------------//
-    fetch('https://api.github.com/users/peas/followers')
+      fetch(`https://api.github.com/users/${githubUser}/followers`)
       .then((respostaDoServidor) => {
         return respostaDoServidor.json();
       })
       .then((respostaConvertida) => {
         setSeguidores(respostaConvertida);
       })
-
     // API GraphQL - DATO CMS
     fetch('https://graphql.datocms.com/', {
       method: 'POST',
@@ -100,6 +99,7 @@ export default function Home(props) {
       })
 
   }, [])
+  
 
   // pegar o click do mouse
 
@@ -177,7 +177,7 @@ export default function Home(props) {
         </div>
 
         <div className="profileRealtionsArea" style={{ gridArea: 'profileRealtionsArea' }}>
-          <ProfileRelationsBox title="seguidores" items={seguidores} />
+          <ProfileRelationsBox title="seguidores" items={seguidores}/>
           <ProfileRelationsBoxWrapper>
             <h2 className="smallTitle">
               Comunidades ({comunidades.length})
@@ -225,7 +225,7 @@ export async function getServerSideProps(context) {
   const cookies = nookies.get(context)
   const token = cookies.USER_TOKEN
 
-  const { isAuthenticated } = await fetch('https://alurakut.vercel.app/api/auth', {
+  const { isAuthenticated } = await fetch('http://localhost:3000/api/auth', {
     headers: {
       Authorization: token
     }
