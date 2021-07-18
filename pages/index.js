@@ -174,6 +174,9 @@ export default function Home(props) {
               </button>
             </form>
           </Box>
+          <Box>
+            <h2>Faça ja uma postagem</h2>
+          </Box>
         </div>
 
         <div className="profileRealtionsArea" style={{ gridArea: 'profileRealtionsArea' }}>
