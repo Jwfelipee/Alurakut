@@ -38,19 +38,14 @@ export function AlurakutMenu({ githubUser }) {
         </nav>
 
         <nav id="navbarSair">
-          <a onClick={(() => {
-            const nav = document.getElementById('navbarSair')
-            nav.addEventListener('click', (event => {
+          <a onClick={(event) => {
               console.log(event.target.text)
-              if (event.target.text === 'Sair') {
                 const simOrNao = confirm('Deseja sair mesmo?')
                 if (simOrNao == true){
                   nookies.destroy(null, 'USER_TOKEN', {})
                   router.push('/login')
                 }
-              }
-            }))
-          })} >
+          }} >
             Sair
           </a>
           <div>

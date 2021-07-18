@@ -225,6 +225,10 @@ export async function getServerSideProps(context) {
   const cookies = nookies.get(context)
   const token = cookies.USER_TOKEN
 
+  /*if(token.length === 0){
+    router.push('/')
+  }*/
+
   const { isAuthenticated } = await fetch('https://alurakut-jwfelipee.vercel.app/api/auth', {
     headers: {
       Authorization: token
