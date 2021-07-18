@@ -1,6 +1,5 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import nookies from 'nookies';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
 
@@ -37,15 +36,8 @@ export function AlurakutMenu({ githubUser }) {
           ))}
         </nav>
 
-        <nav id="navbarSair">
-          <a onClick={(event) => {
-              console.log(event.target.text)
-                const simOrNao = confirm('Deseja sair mesmo?')
-                if (simOrNao == true){
-                  nookies.destroy(null, 'USER_TOKEN', {})
-                  router.push('/login')
-                }
-          }} >
+        <nav>
+          <a href={'/login'} >
             Sair
           </a>
           <div>
@@ -224,7 +216,7 @@ export function AlurakutProfileSidebarMenuDefault() {
           <img src={`${BASE_URL}/icons/plus.svg`} />
           GitHub Trends
         </a>
-        <a href="/logout">
+        <a href="/login">
           <img src={`${BASE_URL}//icons/logout.svg`} />
           Sair
         </a>

@@ -6,9 +6,10 @@ import nookies from 'nookies';
 export default function LoginPage() {
     const router = useRouter();
     const [githubUser, setGithubUser] = React.useState('');
+    nookies.destroy(null, 'USER_TOKEN', {});
 
     return (
-        <main style={{ display: 'flex', flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <main style={{ display: 'flex', flex: 1, alignItems: 'center', justifyContent: 'center' }} on >
             <div className="loginScreen">
                 <section className="logoArea">
                     <img src="https://alurakut.vercel.app/logo.svg" />
