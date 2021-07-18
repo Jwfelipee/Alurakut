@@ -39,7 +39,6 @@ export default function LoginPage() {
                                 })
                                 router.push('/')
                             })
-
                     })}>
                         <p>
                             Acesse agora mesmo com seu usuário do <strong>GitHub</strong>!
@@ -48,7 +47,7 @@ export default function LoginPage() {
                             placeholder="Usuário"
                             value={githubUser}
                             onChange={(e) => {
-                            setGithubUser(e.target.value);
+                                setGithubUser(e.target.value);
                             }} // min 41,29 
                         />
                         {githubUser.length === 0
@@ -59,7 +58,7 @@ export default function LoginPage() {
                             Login
                         </button>
                     </form>
-
+                    
                     <footer className="box">
                         <p>
                             Ainda não é membro? <br />

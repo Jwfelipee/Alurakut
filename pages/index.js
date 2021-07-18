@@ -243,7 +243,7 @@ export async function getServerSideProps(context) {
           permanent: false,
         }
       }
-    }     
+  }
 
   return {
     props: {
